@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nikhil ❤️ | A Surprise From Gopika</title>
+    <meta name="description" content="A special birthday surprise for my love, Nikhil. With all my heart — Gopika ❤️">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ======================== AUDIO ======================== -->
+    <audio id="bgm" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-acoustic-guitar-2423.mp3" type="audio/mp3">
+    </audio>
+    <audio id="clickSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-modern-click-box-check-1120.mp3" type="audio/mp3">
+    </audio>
+    <audio id="successSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mp3">
+    </audio>
+    <audio id="popSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-bubble-pop-up-alert-notification-2357.mp3"
+            type="audio/mp3">
+    </audio>
+    <audio id="slideshowMusic" loop>
+        <source src="love.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- =================== GLOBAL ELEMENTS =================== -->
+    <div id="hearts-container"></div>
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Music Toggle -->
+    <div id="musicToggle" class="music-toggle hidden" onclick="toggleMusic()" title="Toggle Music">
+        <span id="musicIcon">🎵</span>
+        <span id="musicStatus">Music</span>
+    </div>
+
+    <!-- Screen Progress Dots -->
+    <div id="progress-dots" class="progress-dots hidden">
+        <span class="dot active" data-screen="0"></span>
+        <span class="dot" data-screen="1"></span>
+        <span class="dot" data-screen="2"></span>
+        <span class="dot" data-screen="3"></span>
+        <span class="dot" data-screen="4"></span>
+        <span class="dot" data-screen="5"></span>
+        <span class="dot" data-screen="6"></span>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 1: INTRO                                         -->
+    <!-- ======================================================= -->
+    <section id="screen-intro" class="screen active">
+        <div class="intro-bg-glow"></div>
+        <div class="card premium-card intro-card">
+            <div class="intro-emoji-float">💌</div>
+            <h1 class="romantic-title glow-text">Hi Dunduuu ❤️</h1>
+            <p class="intro-subtext">Oru cheriya surprise und…<br>valuth onnum alla enne kond pattiyadh? 😁</p>
+            <div class="intro-hearts-row">💕 💖 💕</div>
+            <button id="btn-open-surprise" class="btn btn-primary pulse-btn" onclick="startSurprise()">
+                Open Surprise 😉
+            </button>
+            <p class="intro-hint">~from someone who loves you a lot 🌸~</p>
+        </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 2: LOVE STORY                                    -->
+    <!-- ======================================================= -->
+    <section id="screen-story" class="screen hidden">
+        <div class="card premium-card story-card">
+            <div class="screen-badge">Chapter 1</div>
+            <h2 class="romantic-title glow-text">Nammude Story ✨</h2>
+            <div class="story-paragraph hidden-anim" id="story-1">
+                <p>🌟 Nammal adhyam ayi propose cheythath orma kanumallo😅 <span class="highlight-date">2022 December 14…</span> 
+                 Ann thudangiyadha inn ivdem vare ayi 3 years kazhinju😅
+                ethra petten analle days poyadh adhinte idakk nadanna santhoshangalum pinakkavum 
+                cute ayrunn but nammal angottum ingottum kurach toxic ayrunn adh karanam nammal
+                orupad struggle face cheyyendi vannu ninte eduth chattam karanam life vare poyi nammade 2nd perdem.
+            njan um adhil kore avashyam illatha karyathil eduth chadi orupad anubhavichu. ee 2026 thott nammal angottum
+            ingottum kurach mature aayi thudangi manasilakki thudangi maybe problem okke face cheyth vannadhkonddagam
+        but kore padichu life il nammal. ini angane onnum undagilla ente side ninnum ninte side um undagallum
+    padich joli vedich appa amma mummy pappa ivarde sammathathode marriage nadakkanam. nammal nadathippikkanam 
+iniyum und problems nammal face cheyyan but aa problems nammde idayil ninnulladhayrikkallum orikkalum
+adh marakkanda ok idiot lubbuuu dunduuu💋</p></br>
+<p> orupad essay ayalle sry😁❤️ ini angott ulladhum koode nokk ok 💋</p>
+
+            </div>
+            <button id="story-next-btn" class="btn btn-primary hidden-btn mt" onclick="goToScreen('screen-unlock')">
+                Continue 💫
+            </button>
+        </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 3: TYPE TO UNLOCK                                -->
+    <!-- ======================================================= -->
+    <section id="screen-unlock" class="screen hidden">
+        <div class="card premium-card unlock-card">
+            <div class="screen-badge">Secret 🔐</div>
+            <div class="lock-icon" id="lockIcon">🔒</div>
+            <h2 class="romantic-title glow-text">Hey handsome ❤️</h2>
+            <p class="unlock-instruction">Type <em class="hint-text">'i lubbuu pappu'</em><br>to unlock my surprise love
+                letter 😘</p>
+            <div class="unlock-input-wrapper">
+                <input type="text" id="unlockInput" class="unlock-input" placeholder="Type here baby… 💬"
+                    oninput="checkUnlockInput()" autocomplete="off" spellcheck="false" />
+                <div class="input-progress-bar">
+                    <div id="inputProgressFill" class="input-progress-fill"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt" onclick="submitUnlock()" id="unlockBtn">
+                Unlock 💖
+            </button>
+            <div id="unlockFeedback" class="unlock-feedback"></div>
+            <div id="heartBurst" class="heart-burst hidden"></div>
+        </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 4: YES / NO GAME                                 -->
+    <!-- ======================================================= -->
+    <section id="screen-yesno" class="screen hidden">
+        <div class="card premium-card yesno-card">
+            <div class="screen-badge">Fun Time 😄</div>
+            <div class="question-emoji">😏❤️</div>
+            <h2 class="romantic-title glow-text">Enne nee ishtapetunnundo?</h2>
+            <p class="yesno-subtext">Think carefully before you answer… 🤔</p>
+            <div class="yesno-buttons">
+                <button id="yesBtn" class="btn btn-yes" onclick="answerYes()">YES 😍</button>
+            </div>
+            <p id="yesnoFeedback" class="yesno-feedback"></p>
+        </div>
+        
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 5: PUZZLE GAME                                   -->
+    <!-- ======================================================= -->
+    <section id="screen-puzzle" class="screen hidden">
+        <div class="card premium-card puzzle-card">
+            <div class="screen-badge">Brain Test 🧩</div>
+            <h2 class="romantic-title">Little Test for You 🧐</h2>
+            <p class="puzzle-instruction">Enne ethra ishtamanennu njan nokkatte… ee photo puzzle solve cheyyoo 🧩</p>
+            <p class="puzzle-hint">Tap two pieces to swap them!</p>
+            <div id="puzzle-board" class="puzzle-board"></div>
+            <p id="puzzle-moves" class="puzzle-moves">Moves: 0</p>
+            <p id="puzzle-success-msg" class="success-msg hidden-anim mt"></p>
+            <button class="btn btn-primary hidden-btn mt" id="next-to-slideshow"
+                onclick="goToScreen('screen-slideshow')">
+                Kollamo😁ini next
+            </button>
+        </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 6: MEMORY SLIDESHOW                              -->
+    <!-- ======================================================= -->
+    <section id="screen-slideshow" class="screen hidden">
+        <div class="card premium-card slideshow-card">
+            <div class="screen-badge">Memories 📸</div>
+            <h2 class="romantic-title glow-text">Our Moments 💕</h2>
+            <div class="slideshow-wrapper">
+                <div class="slideshow-container" id="slideshow-container">
+                    <div class="slide active-slide">
+                        <img src="img12.jpeg" alt="Our moment 1">
+                        <div class="slide-caption">Every second with you is special… 💕</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img2.jpeg" alt="Our moment 2">
+                        <div class="slide-caption">You make every day brighter ☀️</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img3.jpeg" alt="Our moment 3">
+                        <div class="slide-caption">Missing you is my hobby 🥺</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img4.jpeg" alt="Our moment 4">
+                        <div class="slide-caption">Together forever, my love ❤️</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img5.jpeg" alt="Our moment 5">
+                        <div class="slide-caption">lubbu vavea</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img6.jpeg" alt="Our moment 6">
+                        <div class="slide-caption">Us, always and forever 💑</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img7.jpeg" alt="Our moment 7">
+                        <div class="slide-caption">Every photo with you is a treasure 📸</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img8.jpeg" alt="Our moment 8">
+                        <div class="slide-caption">My favourite person in the whole world 🌍</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img9.jpeg" alt="Our moment 9">
+                        <div class="slide-caption">Ninte koode ullappol time stop aganam 🕰️</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img10.jpeg" alt="Our moment 10">
+                        <div class="slide-caption">You are my home, my heart 🏡❤️</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img11.jpeg" alt="Our moment 11">
+                        <div class="slide-caption">I fall for you every single day 🌹</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img1.jpeg" alt="Our moment 12">
+                        <div class="slide-caption">Nee undenkil life complete aanu 🌸</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img13.jpeg" alt="Our moment 13">
+                        <div class="slide-caption">Lucky to have you, always 🍀</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img14.jpeg" alt="Our moment 14">
+                        <div class="slide-caption">chundharaaaaaa💞</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img15.jpeg" alt="Our moment 15">
+                        <div class="slide-caption">My sunshine on cloudy days ☁️☀️</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img16.jpeg" alt="Our moment 16">
+                        <div class="slide-caption">Best memories are made with you 💫</div>
+                    </div>
+                    <div class="slide">
+                        <img src="img17.jpeg" alt="Our moment 17">
+                        <div class="slide-caption">Happy Birthday my love… I love you 🎂❤️</div>
+                    </div>
+                </div>
+                <!-- Slideshow controls -->
+                <div class="slide-dots" id="slideDots"></div>
+            </div>
+            <button class="btn btn-primary hidden-btn mt" id="next-to-final" onclick="goToScreen('screen-final')">
+                Final Surprise 🎂
+            </button>
+        </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- SCREEN 7: FINAL BIRTHDAY SCREEN                         -->
+    <!-- ======================================================= -->
+    <section id="screen-final" class="screen hidden">
+        <div class="final-bg-glow"></div>
+        <div class="card premium-card final-card">
+            <div class="birthday-cake-anim">🎂</div>
+            <h1 class="romantic-title glow-text super-large">Happy Birthday<br>Dunduuuuu 🎉❤️</h1>
+            <p class="birthday-date">✨ May 5 ✨</p>
+
+            <div class="love-letter-box">
+                <p class="letter-line" id="ll1">Enikk ntho parayana anenn ariyilla ee bdy ninte koode illa but this bdy is very special jan 9 orma kanumallo  </p>
+                <p class="letter-line" id="ll2">I am melting with u in every second, u r my life.. I love you so much Vavea 💖</p>
+                <p class="letter-line" id="ll3"> Ninakk enth thonnunno adh ni chey 💋 Enthu preshnam vannalum njan ninte koode thanne undavum….really miss u kunja🥺</p>
+                <p class="letter-line" id="ll4">Have the most wonderful birthday my handsome man 💋💋💋</p>
+            </div>
+
+            <p class="signature">~ Yours forever, Pappuu ❤️ ~</p>
+
+            <div class="final-actions">
+                <button class="btn btn-outline" onclick="goToScreen('screen-intro')">
+                    📖 Read Story Again
+                </button>
+                <button class="btn btn-primary" onclick="replayCelebration()">
+                    🎉 Celebrate Again!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NO button lives at body root — not inside any screen with CSS transform -->
+    <button id="noBtn" class="btn btn-no no-btn-root">NO 😜</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
