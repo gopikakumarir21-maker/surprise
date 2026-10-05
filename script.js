@@ -270,7 +270,7 @@ function answerYes() {
 
 // ─── SCREEN 5: PUZZLE ───────────────────────────────────────
 // Replace this URL with your own photo URL or local file like "puzzle.jpg"
-const PUZZLE_IMG = 'img4.jpeg';
+const PUZZLE_IMG = 'images/img4.jpeg';
 let draggedPiece = null;
 let selectedPiece = null;
 let moveCount = 0;
